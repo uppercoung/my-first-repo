@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block content %}
+  <body>
+    <div class="container mt--9 pb-5 text-black">
+      <div class="row justify-content-center">
+        <div class="col-lg-5 col-md-7">
+          <div class="card bg-secondary border border-soft mb-0">
+            <div class="card-header bg-light pb-4">
+              <h2 class="text-center">로그인</h2>
+              <div class="card-body px-lg-5 py-lg-5">
+                {% if msg %}
+                <p class="text-center text-sm text-danger">{{ msg }}</p>
+                {% endif %}
+                <form method="post">
+                  {% csrf_token %}
+                  <div class="form-group mb-3">
+                    <div class="input-group input-group-merge input-group-alternative">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="ni ni-user-run"></i></span>
+                      </div>
+                      {{ form.username }}
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="input-group input-group-merge input-group-alternative">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                      </div>
+                      {{ form.password }}
+                    </div>
+                  </div>
+                </div>
+                <div class="custom-control custom-control-alternative custom-checkbox">
+                  <input class="custom-control-input" id=" customCheckLogin" type="checkbox">
+                  <label class="custom-control-label" for=" customCheckLogin">
+                    <span>로그인 유지하기</span>
+                  </label>
+                </div>
+                <div class="text-center">
+                  <button type="submit" class="btn btn-primary my-4">로그인</button>
+                </div>
+                <p>
+                  <a href="{% url 'index' %}">홈으로</a>
+                </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div/
+  </body>
+{% endblock %}
+

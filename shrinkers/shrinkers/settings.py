@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 import os
 from pathlib import Path
+from pickle import TRUE
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -24,10 +25,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-m8l+i$-%w0lgqfb)*+v=h0$ynv9&rcdsaga$g=3bx_f_n0%$ko"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 
-ALLOWED_HOSTS = []
+ENV = os.environ.get("DJANGO_ENV", "dev")
 
+if ENV == "dev":
+    DEBUG=True
+else:
+    DEBUG=False
+
+ALLOWED_HOSTS = ["*"]
 
 # Application definition
 AUTH_USER_MODEL = "shortener.Users"
@@ -40,11 +46,14 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "shortener.apps.ShortenerConfig",
     "debug_toolbar",  # Django Debug Toolbar
+    "django_seed",
 ]
 
 INTERNAL_IPS = [
     "127.0.0.1",
 ]  # Django Debug Toolbar
+
+LOGIN_URL = "/login"
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -111,7 +120,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
-LANGUAGE_CODE = "en-us"
+LANGUAGE_CODE = "ko-kr"
 
 TIME_ZONE = "UTC"
 
